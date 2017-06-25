@@ -1,14 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+   <ion-navbar>
+      <ion-title>
+         Last Transfer News
+      </ion-title>
+   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+   <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+  <ion-item *ngFor="let item of xmlItems; let i = index">
+    <ion-avatar item-start>
+      <img src="{{item.image}}">
+    </ion-avatar>
+    <h2>{{item.title[0]}}</h2> <ion-badge>{{item.pubDate[0]}}</ion-badge>
+    <p>{{item.detail}}</p>
+  </ion-item>
+</ion-list>
 </ion-content>
